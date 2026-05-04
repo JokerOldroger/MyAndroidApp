@@ -3,11 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from './src/pages/HomeScreen';
-import ProfileScreen from './src/pages/ProfileScreen';
-import RecordScreen from './src/pages/RecordScreen';
+import GuidanceScreen from './src/pages/guidance/GuidanceScreen';
+import HomeScreen from './src/pages/guidance/HomeScreen';
+import ProfileScreen from './src/pages/guidance/ProfileScreen';
+import RecordScreen from './src/pages/guidance/RecordScreen';
 
 export type RootStackParamList = {
+  Guidance: undefined;
   Home: undefined;
   Profile: undefined;
   Record: undefined;
@@ -31,7 +33,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Guidance">
+          <Stack.Screen name="Guidance" component={GuidanceScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: '个人信息' }} />
           <Stack.Screen name="Record" component={RecordScreen} options={{ title: '战绩查看' }} />
