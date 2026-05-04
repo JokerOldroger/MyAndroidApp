@@ -19,7 +19,7 @@ type RootStackParamList = {
   AI: undefined;
 };
 
-type GuidanceScreenProps = {
+type NavigationScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList>;
 };
 
@@ -36,7 +36,7 @@ const menuItems = [
   { label: '消息', screen: 'Message' },
 ] as const;
 
-export default function GuidanceScreen({ navigation }: GuidanceScreenProps) {
+export default function NavigationScreen({ navigation }: NavigationScreenProps) {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.phoneFrame}>
