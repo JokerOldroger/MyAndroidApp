@@ -9,6 +9,12 @@ import {
   View,
 } from 'react-native';
 
+import { AppNavigationProp } from './navigationTypes';
+
+type RecordScreenProps = {
+  navigation: AppNavigationProp;
+};
+
 const achievements = [
   { title: 'Speed Builder', value: '12', color: '#4ED6A7' },
   { title: 'Code Streak', value: '9', color: '#FFB84D' },
@@ -29,7 +35,7 @@ const badges: Array<{ label: string; progress: `${number}%` }> = [
   { label: '赛场协作', progress: '94%' },
 ];
 
-export default function RecordScreen() {
+export default function RecordScreen({ navigation: _navigation }: RecordScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ImageBackground
@@ -37,92 +43,94 @@ export default function RecordScreen() {
         style={styles.background}
         imageStyle={styles.backgroundImage}
       >
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-          <View style={styles.hero}>
-            <View style={styles.heroCopy}>
-              <Text style={styles.eyebrow}>ROBOT LEAGUE</Text>
-              <Text style={styles.title}>成就星球</Text>
-              <Text style={styles.subtitle}>查看排名、奖章和本周竞赛能量</Text>
-            </View>
-            <Image source={require('../../../assets/bisai-2.png')} style={styles.heroIcon} />
-          </View>
-
-          <View style={styles.playerCard}>
-            <View style={styles.playerTop}>
-              <Image source={require('../../../assets/portrait/叮咚头像.png')} style={styles.avatar} />
-              <View style={styles.playerInfo}>
-                <Text style={styles.playerName}>Cher</Text>
-                <Text style={styles.playerMeta}>高级小工程师 · 12岁</Text>
+        <View style={styles.page}>
+          <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+            <View style={styles.hero}>
+              <View style={styles.heroCopy}>
+                <Text style={styles.eyebrow}>ROBOT LEAGUE</Text>
+                <Text style={styles.title}>成就星球</Text>
+                <Text style={styles.subtitle}>查看排名、奖章和本周竞赛能量</Text>
               </View>
-              <View style={styles.rankPill}>
-                <Text style={styles.rankNumber}>#2</Text>
-                <Text style={styles.rankLabel}>本周</Text>
-              </View>
+              <Image source={require('../../../assets/bisai-2.png')} style={styles.heroIcon} />
             </View>
 
-            <View style={styles.xpTrack}>
-              <View style={styles.xpFill} />
-            </View>
-            <View style={styles.xpRow}>
-              <Text style={styles.xpText}>2360 XP</Text>
-              <Text style={styles.xpText}>距离第一名 120 XP</Text>
-            </View>
-          </View>
-
-          <View style={styles.statsGrid}>
-            {achievements.map((item) => (
-              <View key={item.title} style={[styles.statTile, { borderTopColor: item.color }]}>
-                <Text style={[styles.statValue, { color: item.color }]}>{item.value}</Text>
-                <Text style={styles.statTitle}>{item.title}</Text>
+            <View style={styles.playerCard}>
+              <View style={styles.playerTop}>
+                <Image source={require('../../../assets/portrait/叮咚头像.png')} style={styles.avatar} />
+                <View style={styles.playerInfo}>
+                  <Text style={styles.playerName}>Cher</Text>
+                  <Text style={styles.playerMeta}>高级小工程师 · 12岁</Text>
+                </View>
+                <View style={styles.rankPill}>
+                  <Text style={styles.rankNumber}>#2</Text>
+                  <Text style={styles.rankLabel}>本周</Text>
+                </View>
               </View>
-            ))}
-          </View>
 
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>排行榜</Text>
-            <Text style={styles.sectionHint}>TOP 5</Text>
-          </View>
-
-          <View style={styles.leaderboard}>
-            {leaderboard.map((player) => (
-              <View key={player.name} style={[styles.rankRow, player.current && styles.currentRank]}>
-                <View style={[styles.rankBadge, { backgroundColor: player.accent }]}>
-                  <Text style={styles.rankBadgeText}>{player.rank}</Text>
-                </View>
-                <View style={styles.rankAvatarWrap}>
-                  <Image source={require('../../../assets/portrait/好友列表头像.png')} style={styles.rankAvatar} />
-                </View>
-                <View style={styles.rankInfo}>
-                  <Text style={styles.rankName}>{player.name}</Text>
-                  <Text style={styles.rankRole}>{player.current ? '我的排名' : '机器人挑战者'}</Text>
-                </View>
-                <Text style={styles.rankScore}>{player.score}</Text>
+              <View style={styles.xpTrack}>
+                <View style={styles.xpFill} />
               </View>
-            ))}
-          </View>
+              <View style={styles.xpRow}>
+                <Text style={styles.xpText}>2360 XP</Text>
+                <Text style={styles.xpText}>距离第一名 120 XP</Text>
+              </View>
+            </View>
 
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>能力徽章</Text>
-            <Text style={styles.sectionHint}>LEVEL UP</Text>
-          </View>
-
-          <View style={styles.badgePanel}>
-            {badges.map((badge) => (
-              <View key={badge.label} style={styles.badgeItem}>
-                <View style={styles.badgeIcon}>
-                  <Image source={require('../../../assets/renwu.png')} style={styles.badgeImage} />
+            <View style={styles.statsGrid}>
+              {achievements.map((item) => (
+                <View key={item.title} style={[styles.statTile, { borderTopColor: item.color }]}>
+                  <Text style={[styles.statValue, { color: item.color }]}>{item.value}</Text>
+                  <Text style={styles.statTitle}>{item.title}</Text>
                 </View>
-                <View style={styles.badgeCopy}>
-                  <Text style={styles.badgeLabel}>{badge.label}</Text>
-                  <View style={styles.badgeTrack}>
-                    <View style={[styles.badgeFill, { width: badge.progress }]} />
+              ))}
+            </View>
+
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>排行榜</Text>
+              <Text style={styles.sectionHint}>TOP 5</Text>
+            </View>
+
+            <View style={styles.leaderboard}>
+              {leaderboard.map((player) => (
+                <View key={player.name} style={[styles.rankRow, player.current && styles.currentRank]}>
+                  <View style={[styles.rankBadge, { backgroundColor: player.accent }]}>
+                    <Text style={styles.rankBadgeText}>{player.rank}</Text>
                   </View>
+                  <View style={styles.rankAvatarWrap}>
+                    <Image source={require('../../../assets/portrait/好友列表头像.png')} style={styles.rankAvatar} />
+                  </View>
+                  <View style={styles.rankInfo}>
+                    <Text style={styles.rankName}>{player.name}</Text>
+                    <Text style={styles.rankRole}>{player.current ? '我的排名' : '机器人挑战者'}</Text>
+                  </View>
+                  <Text style={styles.rankScore}>{player.score}</Text>
                 </View>
-                <Text style={styles.badgePercent}>{badge.progress}</Text>
-              </View>
-            ))}
-          </View>
-        </ScrollView>
+              ))}
+            </View>
+
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>能力徽章</Text>
+              <Text style={styles.sectionHint}>LEVEL UP</Text>
+            </View>
+
+            <View style={styles.badgePanel}>
+              {badges.map((badge) => (
+                <View key={badge.label} style={styles.badgeItem}>
+                  <View style={styles.badgeIcon}>
+                    <Image source={require('../../../assets/renwu.png')} style={styles.badgeImage} />
+                  </View>
+                  <View style={styles.badgeCopy}>
+                    <Text style={styles.badgeLabel}>{badge.label}</Text>
+                    <View style={styles.badgeTrack}>
+                      <View style={[styles.badgeFill, { width: badge.progress }]} />
+                    </View>
+                  </View>
+                  <Text style={styles.badgePercent}>{badge.progress}</Text>
+                </View>
+              ))}
+            </View>
+          </ScrollView>
+        </View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -139,9 +147,12 @@ const styles = StyleSheet.create({
   backgroundImage: {
     opacity: 0.18,
   },
+  page: {
+    flex: 1,
+  },
   content: {
     padding: 18,
-    paddingBottom: 34,
+    paddingBottom: 120,
   },
   hero: {
     minHeight: 150,

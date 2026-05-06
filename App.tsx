@@ -3,22 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import NavigationScreen from './src/pages/guidance/NavigationScreen';
-import LearningMap from './src/pages/guidance/learningMap';
-import HomeScreen from './src/pages/guidance/HomeScreen';
+import MainTabsScreen from './src/pages/guidance/MainTabsScreen';
 import ProfileScreen from './src/pages/guidance/ProfileScreen';
-import RecordScreen from './src/pages/guidance/RecordScreen';
-
-export type RootStackParamList = {
-  Navigation: undefined;
-  Home: undefined;
-  Profile: undefined;
-  Record: undefined;
-  Message: undefined;
-  Contact: undefined;
-  AI: undefined;
-  LearningMap: undefined;
-};
+import SuperAdvancedScreen from './src/pages/guidance/SuperAdvancedScreen';
+import AdvancedScreen from './src/pages/guidance/AdvancedScreen';
+import IntermediateScreen from './src/pages/guidance/IntermediateScreen';
+import BeginnerScreen from './src/pages/guidance/BeginnerScreen';
+import IntroScreen from './src/pages/guidance/IntroScreen';
+import EnthusiastScreen from './src/pages/guidance/EnthusiastScreen';
+import ExchangeIslandScreen from './src/pages/guidance/ExchangeIslandScreen';
+import { RootStackParamList } from './src/pages/guidance/navigationTypes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -35,20 +29,21 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="learningMap">
-          <Stack.Screen name="learningMap" component={LearningMap} options={{ headerShown: false }} />
-          <Stack.Screen name="Navigation" component={NavigationScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName="MainTabs">
+          <Stack.Screen name="MainTabs" component={MainTabsScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: '个人信息' }} />
-          <Stack.Screen name="Record" component={RecordScreen} options={{ title: '战绩查看' }} />
+          <Stack.Screen name="SuperAdvanced" component={SuperAdvancedScreen} options={{ title: '超高级者' }} />
+          <Stack.Screen name="Advanced" component={AdvancedScreen} options={{ title: '高级者' }} />
+          <Stack.Screen name="Intermediate" component={IntermediateScreen} options={{ title: '中级者' }} />
+          <Stack.Screen name="Beginner" component={BeginnerScreen} options={{ title: '初级者' }} />
+          <Stack.Screen name="Intro" component={IntroScreen} options={{ title: '入门者' }} />
+          <Stack.Screen name="Enthusiast" component={EnthusiastScreen} options={{ title: '爱好者' }} />
+          <Stack.Screen name="ExchangeIsland" component={ExchangeIslandScreen} options={{ title: '交流岛' }} />
           <Stack.Screen name="Message" options={{ title: '消息' }}>
             {() => <PlaceholderScreen title="消息" />}
           </Stack.Screen>
           <Stack.Screen name="Contact" options={{ title: '联系我们' }}>
             {() => <PlaceholderScreen title="联系我们" />}
-          </Stack.Screen>
-          <Stack.Screen name="AI" options={{ title: 'AI助手' }}>
-            {() => <PlaceholderScreen title="AI助手" />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
@@ -81,3 +76,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
