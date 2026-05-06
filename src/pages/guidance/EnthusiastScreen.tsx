@@ -11,25 +11,7 @@ import {
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { navigateToMainTab } from './navigationTypes';
-
-type RootStackParamList = {
-  Navigation: undefined;
-  Home: undefined;
-  Profile: undefined;
-  Record: undefined;
-  SuperAdvanced: undefined;
-  Advanced: undefined;
-  Intermediate: undefined;
-  Beginner: undefined;
-  Intro: undefined;
-  Enthusiast: undefined;
-  ExchangeIsland: undefined;
-  Message: undefined;
-  Contact: undefined;
-  AI: undefined;
-  LearningMap: undefined;
-};
+import { RootStackParamList, navigateToMainTab } from './navigationTypes';
 
 type EnthusiastScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Enthusiast'>;

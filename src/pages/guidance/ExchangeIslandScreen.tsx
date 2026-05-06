@@ -2,24 +2,7 @@ import React from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import StageLandingTemplate from './StageLandingTemplate';
-
-type RootStackParamList = {
-  Navigation: undefined;
-  Home: undefined;
-  Profile: undefined;
-  Record: undefined;
-  SuperAdvanced: undefined;
-  Advanced: undefined;
-  Intermediate: undefined;
-  Beginner: undefined;
-  Intro: undefined;
-  Enthusiast: undefined;
-  ExchangeIsland: undefined;
-  Message: undefined;
-  Contact: undefined;
-  AI: undefined;
-  LearningMap: undefined;
-};
+import { RootStackParamList } from './navigationTypes';
 
 type ExchangeIslandScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'ExchangeIsland'>;
